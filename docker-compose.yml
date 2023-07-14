@@ -5,7 +5,7 @@ services:
     user: root
     environment:
       - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo16@2022      
+      - POSTGRES_PASSWORD=odoo16@Osmafremx@2023
       - POSTGRES_DB=postgres
     restart: always             # run as a service
     volumes:
@@ -17,18 +17,19 @@ services:
     depends_on:
       - db
     ports:
-      - "10016:8069"
-      - "20016:8072" # live chat
+      - "5016:8069"
+      - "6016:8071"
+      - "7016:8072" # live chat
     tty: true
     command: --
     environment:
       - HOST=db
       - USER=odoo
-      - PASSWORD=odoo16@2022
+      - PASSWORD=odoo16@Osmafremx@2023
     volumes:
-      #- /etc/timezone:/etc/timezone:ro
-      #- /etc/localtime:/etc/localtime:ro
-      # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
+      - /etc/timezone:/etc/timezone:mx
+      - /etc/localtime:/etc/localtime:mx
+      - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
     restart: always             # run as a service
